@@ -54,9 +54,11 @@ module CanCan
     #
     # Also see the RSpec Matchers to aid in testing.
     def can?(action, subject, *extra_args)
+      puts "[CANCAN] #can? #{action} | #{subject} | #{extra_args}"
       match = relevant_rules_for_match(action, subject).detect do |rule|
         rule.matches_conditions?(action, subject, extra_args)
       end
+      puts "[CANCAN] #can? #{match}"
       match ? match.base_behavior : false
     end
 
